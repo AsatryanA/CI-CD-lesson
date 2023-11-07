@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('SonarQube check') {
       steps {
-        withSonarQubeEnv(installationName: 'Sonar') {
+        withSonarQubeEnv(installationName: 'SonarQube') {
             bat 'mvn clean compile test sonar:sonar'
         }
       }
