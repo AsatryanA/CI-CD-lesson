@@ -3,9 +3,8 @@ pipeline {
   stages {
       stage('SonarQube Analysis'){
             steps{
-                echo 'Scanning Maven project'
                 withCredentials([string(credentialsId: 'SonarQube', variable: 'SONAR_TOKEN')]) {
-                    withSonarQubeEnv(installationName: 'SonarQube' credentialsId: 'SonarQube') { 
+                    withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'SonarQube') { 
                         sh 'mvn sonar:sonar -Dsonar.projectKey=Sonar-Lesson -Dsonar.host.url=https://localhost:9000'
                         
                     }
