@@ -5,7 +5,7 @@ pipeline {
             steps{
                 withCredentials([string(credentialsId: 'SonarQube', variable: 'SONAR_TOKEN')]) {
                     withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'SonarQube') { 
-                        sh 'mvn sonar:sonar -Dsonar.projectKey=Sonar-Lesson -Dsonar.host.url=https://localhost:9000'
+                        sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=Sonar-Lesson -Dsonar.host.url=https://localhost:9000'
                         
                     }
                 }    
