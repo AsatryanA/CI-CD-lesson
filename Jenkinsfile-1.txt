@@ -1,0 +1,12 @@
+pipeline {
+  agent any
+  stages {
+    stage('SonarQube check') {
+      steps {
+        withSonarQubeEnv(installationName: 'sq1') {
+            bat 'mvn clean compile test sonar:sonar'
+        }
+      }
+    }
+  }
+}
