@@ -4,7 +4,7 @@ pipeline {
     stage('SonarQube check') {
       steps {
         withSonarQubeEnv(installationName: 'SonarQube') {
-            bat 'mvn clean compile test sonar:sonar'
+            bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=Sonar-Lesson -Dsonar.projectName='Sonar-Lesson''
         }
       }
     }
