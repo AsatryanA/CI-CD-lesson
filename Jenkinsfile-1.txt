@@ -1,10 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('SonarQube check') {
-      steps {
-        withSonarQubeEnv(installationName: 'SonarQube') {
-            sh  'mvn clean verify sonar:sonar'        }
+      stage('SonarQube Analysis'){
+            steps{
+                echo 'Scanning Maven project'
+                withCredentials([string(credentialsId: 'SonarQube', variable: 'SONAR_TOKEN')]) {
+                    withSonarQubeEnv(installationName: 'SonarQube' credentialsId: 'SonarQube') { 
+                        sh 'mvn sonar:sonar -Dsonar.projectKey=Sonar-Lesson -Dsonar.organization=vcjain -Dsonar.host.url=https://localhost:9000'
+                        
+                    }
+                }    
       }
     }
   }
