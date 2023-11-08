@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>ci-cd</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-         <packaging>war</packaging>
+    <packaging>war</packaging>
     <name>ci-cd</name>
     <description>ci-cd</description>
     <properties>
@@ -19,11 +19,6 @@
     </properties>
     <dependencies>
 
-                     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
@@ -125,11 +120,11 @@
                 <sonar.projectKey>
                     Sonar-Lesson
                 </sonar.projectKey>
-            <sonar.projectName>
-                'Sonar-Lesson'
-            </sonar.projectName>
+                <sonar.projectName>
+                    'Sonar-Lesson'
+                </sonar.projectName>
 
-              <sonar.token>
+                <sonar.token>
                     sqp_595c368595edbf6d6889e906013e1f730a730ad5
                 </sonar.token>
 

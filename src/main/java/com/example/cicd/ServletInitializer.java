@@ -1,6 +1,5 @@
-package com.example.cicd.service;
+package com.example.cicd;
 
-import com.example.cicd.CiCdApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
