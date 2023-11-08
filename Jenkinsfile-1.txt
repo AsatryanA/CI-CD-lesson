@@ -1,8 +1,12 @@
-stage('Build') {
-    steps {
-        withSonarQubeEnv('SonarQube') {
-            sh 'mvn sonar:sonar'
-        }
+pipeline {
+    agent any
+      stages {
+        stage('Build') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
         }
     }
 }
