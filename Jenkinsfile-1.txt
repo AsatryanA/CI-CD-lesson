@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar'
+                    bat 'mvn clean verify sonar:sonar   -Dsonar.projectKey=Sonar-Lesson   -Dsonar.projectName='Sonar-Lesson'   -Dsonar.host.url=http://localhost:9000   -Dsonar.token=sqp_595c368595edbf6d6889e906013e1f730a730ad5'
                 }
             }
         }
