@@ -6,7 +6,7 @@ pipeline {
                 script {
                     withSonarQubeEnv('SonarQube') {
                         sh """
-                       SonarScanner/bin/sonar-scanner \
+                       mvn sonar:sonar \
                             -Dsonar.projectKey=Sonar-Lesson \
                             -Dsonar.projectName='Sonar-Lesson' \
                             -Dsonar.host.url=http://localhost:9000 \
