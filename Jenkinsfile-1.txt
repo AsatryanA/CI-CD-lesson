@@ -2,12 +2,9 @@ pipeline {
     agent any
       stages {
           stage('SonarScan') {
-      //withSonarQubeEnv('SonarQube') {
-         withMaven {
-             //sh 'mvn clean package sonar:sonar' 
+         withMaven { 
              sh 'mvn clean verify sonar:sonar   -Dsonar.projectKey=Sonar-Lesson   -Dsonar.projectName='Sonar-Lesson'   -Dsonar.host.url=http://localhost:9000   -Dsonar.token=sqp_595c368595edbf6d6889e906013e1f730a730ad5'   
          }
     }
-}
 }
 }
