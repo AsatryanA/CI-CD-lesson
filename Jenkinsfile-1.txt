@@ -1,18 +1,8 @@
 stage('Build') {
     steps {
         withSonarQubeEnv('SonarQube') {
-            sh "${SONARQUBE_SCANNER_HOME}/bin/sonar-scanner"
+            sh 'mvn sonar:sonar'
         }
-        withMaven(
-            maven: '3.9.5',
-            mavenSettingsConfig: 'Your_Maven_Settings_ID',
-            options: [
-                '-Dsonar.host.url=${env.SONAR_HOST_URL}',
-                '-Dsonar.login=${env.SONAR_AUTH_TOKEN}',
-                '-Dsonar.projectKey=${env.SONAR_PROJECT_KEY}'
-            ]
-        ) {
-            sh 'mvn clean package'
         }
     }
 }
