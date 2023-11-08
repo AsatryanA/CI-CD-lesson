@@ -1,26 +1,19 @@
 pipeline {
-    agent any 
-    
+    agent any
     stages {
 
-         stage("Building Using Maven"){
-            steps{
-                script {
-                    
-                    bat 'mvn --version'
-                    println "Maven building"
-                    bat 'mvn clean package'
-                    println "build Succesfully"
-                }
-            }
-        }
-        
-         stage('SonarQube analysis') {
+         stage('Test coverage by JaCoCo') {
             steps {
-                withSonarQubeEnv('SonarQube') { 
-                    bat "mvn sonar:sonar"
-                }
-            }
+                jacoco()
+      }
+
+
+    }
+        stage('Deploy to .war') {
+          steps {
+            deploy adapters: [tomcat9(credentialsId: 'deployer', path: '', url: 'http://localhost:8080/')],
+          contextPath: 'jenkins-task', onFailure: false, war: '**/*.war'
+          }
         }
     }
 }
