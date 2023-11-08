@@ -13,8 +13,8 @@ pipeline {
                   }
               }
           }
-           stage('SonarQube analysis') {
-              steps {
+    stage('SonarQube analysis') {
+        steps {
                   withSonarQubeEnv('SonarQube') {
                       bat "mvn sonar:sonar"
                   }
@@ -27,5 +27,10 @@ pipeline {
           }
         }
 
+    stage('Deploy to .war') {
+          steps {
+            deploy adapters: [tomcat9(credentialsId: 'deployer', path: '', url: 'http://localhost:8080/')],
+          contextPath: 'jenkins-task', onFailure: false, war: '**/*.war'
+          }
   }
 }
