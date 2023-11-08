@@ -116,9 +116,9 @@
             <sonar.projectName>
                 'Sonar-Lesson'
             </sonar.projectName>
-             <!--   <sonar.token>
+              <sonar.token>
                     sqp_595c368595edbf6d6889e906013e1f730a730ad5
-                </sonar.token>-->
+                </sonar.token>
 
 
                 <!-- Generate token by login as admin User in your SonarQube site,
