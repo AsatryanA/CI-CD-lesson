@@ -1,0 +1,18 @@
+pipeline {
+  agent any
+  stages {
+
+    stage('SonarQube analysis') {
+        steps {
+                  withSonarQubeEnv('SonarQube') {
+                      bat "mvn sonar:sonar"
+                  }
+              }
+          }
+            stage('Test coverage by JaCoCo') {
+                steps {
+                  jacoco()
+                }
+              }
+    }
+}
