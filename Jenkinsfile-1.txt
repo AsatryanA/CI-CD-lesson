@@ -1,10 +1,22 @@
 pipeline {
     agent any
+
+environment {
+        SONARQUBE_SCANNER_HOME = tool 'SonarScanner'
+    }
       stages {
-        stage('Build') {
+         stage('Scan with SonarQube') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn clean verify sonar:sonar   -Dsonar.projectKey=Sonar-Lesson   -Dsonar.projectName='Sonar-Lesson'   -Dsonar.host.url=http://localhost:9000   -Dsonar.token=sqp_595c368595edbf6d6889e906013e1f730a730ad5'
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh """
+                        ${SONARQUBE_SCANNER_HOME}/bin/sonar-scanner \
+                            -Dsonar.projectKey=Sonar-Lesson \
+                            -Dsonar.projectName='Sonar-Lesson' \
+                            -Dsonar.host.url=http://localhost:9000 \
+                            -Dsonar.login=sqp_595c368595edbf6d6889e906013e1f730a730ad5
+                        """
+                    }
                 }
             }
         }
