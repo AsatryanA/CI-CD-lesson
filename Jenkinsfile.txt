@@ -26,7 +26,11 @@ pipeline {
          bat 'mvn package'
           }
         }
-
+   stage('Test coverage by JaCoCo') {
+                steps {
+                  jacoco()
+                }
+              }
     stage('Deploy to .war') {
 steps{
          deploy adapters: [tomcat9(credentialsId: 'Jenkins', path: '', url: 'http://localhost:8080/')], contextPath: 'JenkinsTask', war: '**/*.war'
