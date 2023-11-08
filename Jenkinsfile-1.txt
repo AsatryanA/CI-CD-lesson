@@ -1,16 +1,12 @@
 pipeline {
     agent any
-
-environment {
-        SONARQUBE_SCANNER_HOME = tool 'SonarScanner'
-    }
       stages {
          stage('Scan with SonarQube') {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
                         sh """
-                        ${SONARQUBE_SCANNER_HOME}/bin/sonar-scanner \
+                       SonarScanner/bin/sonar-scanner \
                             -Dsonar.projectKey=Sonar-Lesson \
                             -Dsonar.projectName='Sonar-Lesson' \
                             -Dsonar.host.url=http://localhost:9000 \
