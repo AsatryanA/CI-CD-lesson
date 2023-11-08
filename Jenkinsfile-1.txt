@@ -1,14 +1,31 @@
 pipeline {
-  agent any
-  stages {
-      stage('SonarQube Analysis'){
-            steps{
-                    withSonarQubeEnv(installationName: 'SonarQube') { 
-                       sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=Sonar-Lesson   -Dsonar.projectName='Sonar-Lesson'
-                        
-                    }
-                }    
-      }
-    }
-  }
+    agent any
 
+    environment {
+        SONARQUBE_SCANNER_HOME = tool 'SonarQubeScanner'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Scan with SonarQube') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${SONARQUBE_SCANNER_HOME}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+    }
+}
